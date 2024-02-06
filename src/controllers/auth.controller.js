@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require('crypto');
 
 const getProfile = async (req, res) => {
     try {
@@ -27,7 +27,10 @@ const signup = async (req, res) => {
         const existingUser = await User.findOne({ email: email });
         if (existingUser) throw new Error("User already exists!");
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        /**
+         * Here we are using md5 hashing algorithm to hash the password, because bcrypt is not working properly in my personal hosting.
+         */
+        const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 
         const user = await User.create({
             name,
@@ -69,7 +72,11 @@ const login = async (req, res) => {
             throw new Error("Invalid email or password!");
         }
 
-        const isEqual = await bcrypt.compare(password, user.password);
+        /**
+         * Here we are using md5 hashing algorithm to hash the password, because bcrypt is not working properly in my personal hosting.
+         */
+        const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
+        const isEqual = hashedPassword === user.password;
         if (!isEqual) {
             throw new Error("Invalid email or password!");
         }
