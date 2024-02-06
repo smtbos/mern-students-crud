@@ -1,5 +1,18 @@
 # Students CRUD API
 
+This is a simple CRUD API for managing students. It is built with Node.js, Express, MongoDB and ReactJS.
+
+## Demo
+
+The project is hosted on personal hosting and can be accessed at the following URL:
+
+**Frontend:**
+https://mern-students-crud.smtbos.com
+
+**Backend:**
+https://mern-students-crud-api.smtbos.com
+
+
 ## Prerequisites
 
 - Node.js installed on your machine
