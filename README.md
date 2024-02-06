@@ -49,3 +49,9 @@ To start the API in development mode, run the following command:
 ```bash
 npm run dev
 ```
+
+## API Documentation
+
+Postman collection with the API documentation can be found here
+
+[API Documentation](./Students-CRUD.postman_collection.json)
